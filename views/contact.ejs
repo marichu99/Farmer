@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+
+
+    </head>
+    <body>
+      
+        
+            <nav>
+            <div class="site-title"><a href="/"><h1>Farmer Consumer Linkage System</h1></a>
+                <p>A repository for all farm Produce</p>
+                </div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/all-produce">Add Produce</a></li>
+                    <li><a href="/search"> Search Produce</a></li>
+                    <li><a href="/contact"> Contact Us</a></li>
+                    <li><a href="/about"> About Us</a></li>
+                </ul><br>
+                
+                <form action="/getProduce" method="POST">
+                <input type="text" placeholder="Search for produce" id="search" name="search"><br>
+                <input type="submit" value="search" class="button">
+                </form>
+                
+            </div>
+            </nav>
+            
+               
+                <div class="blogs-content">
+                   <label>Fridah Abiero:</label> <br>
+                   <p>fabiero@gmail.com</p><br>
+                   <p>+254742852560</p><br>
+                   <label>Elizabeth Mulumbi:</label><br>
+                   <p>lisamulumbi@gmail.com</p><br>
+                   <p>+254700351059</p><br>
+                   <label>Martin Mabera:</label><br>
+                   <p>martinmaati31@gmail.com</p><br>
+                   <p>+254799692741</p><br>
+                   <label>Owen Omondi:</label><br>
+                   <p>1marquee125@gmail.com</p><br>
+                   <p>+254798654687</p>
+                   
+               </div>
+            
+            
+            
+        
+        
+        <script>
+            // select the delete button and attach it to a variable
+            const trash=document.querySelector('.button2');
+            // add event listener
+            trash.addEventListener('click', (e)=>{
+                // get to the endpoint id
+                const endpoint ='http://localhost:3000/getProduce/'+trash.dataset.emp;
+                console.log(endpoint);
+                // fetch request
+                const deleteMethod={
+                    method: 'DELETE',
+                   
+                };
+                fetch(endpoint,deleteMethod)
+                .then((response) => response.json())
+                .then((data)=> window.location.href=data.redirect)
+                .catch((err)=> console.log(err));
+            });
+            var type =document.querySelector('.type').textContent;
+            var quantity =document.querySelector('.quantity').textContent;
+            var description =document.querySelector('.description').textContent;
+             
+
+        </script>
+        
+    </body>
+</html>

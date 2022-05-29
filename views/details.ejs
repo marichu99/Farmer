@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+
+
+    </head>
+    <body>
+      
+        
+            <nav>
+            <div class="site-title"><a href="/"><h1>Farmer Consumer Linkage System</h1></a>
+                <p>A repository for all farm Produce</p>
+                </div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    
+                    <li><a href="/search"> Search Produce</a></li>
+                    <li><a href="/contact"> Contact Us</a></li>
+                    <li><a href="/about"> About Us</a></li>
+                </ul><br>
+                
+                <form action="/getProduce" method="POST">
+                <input type="text" placeholder="Search for produce" id="search" name="search"><br>
+                <input type="submit" value="search" class="button">
+                </form>
+                
+                
+            </div>
+            </nav>
+            
+               
+                <div class="blogs-content">
+                    
+                   
+                     <% if (Data.length>0){ %>
+                        <% Data.forEach(blog=>{ %>
+                         <form>   
+                          <a href="/getProduce/<%- blog._id %>" class="single" >
+                          <h2 class="type" name="type"><%= blog.type %></h2>
+                          <p class="quantity" name="type"><%= blog.quantity %></p>
+                          <p class="description" name="type"><%= blog.description%></p>              
+                          <p class="blogID" name="blogID" hidden><%=blog._id%></p>            
+                        </a>
+                        <input type="submit" value="Buy" class="button1"> &nbsp;&nbsp;&nbsp;&nbsp;                        
+                        </form><br>
+                                                  
+                       
+                        <% }) %>
+                     <% } %>
+                </div>
+                
+            
+            
+            
+        
+        
+        <script>
+      
+            // buy
+            const buy = document.querySelector(".button1");
+            buy.addEventListener("click" ,()=>{
+                console.log("Checkout")
+                const methodz= {
+                    method: 'POST'
+                };
+                var blogID =document.querySelector('.blogID').textContent;
+                var quantity =document.querySelector('.quantity').textContent;
+                const endpoint ='http://localhost:3000/bought/'+blogID
+                console.log(endpoint);
+                fetch(endpoint,{
+                    methodz,
+                    headers:{"Content-type" : "application/json"},
+                    body: JSON.stringify({                 
+                    items: [
+                        {id:blogID, quantity:quantity}]
+                    
+                })
+            }).then((res)=>{
+                if (res.ok) {
+                    return res.json()
+                }else{
+                    return res.json().then(json => Promise.reject(json))
+                }
+            }).then(({url})=>{
+                console.log(url);
+                window.location=url
+            }).catch((err)=>{
+                console.log(err);
+            })
+            }) 
+             
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produce Details</title>
+    <link href="style.css" rel="stylesheet">
+
+
+    </head>
+    <body>
+        <nav>
+            <div class="site-title"><a href="/"><h1>Farmer Consumer Linkage System</h1></a>
+                <p>Add a product to the marketplace</p>
+                </div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/all-produce">All Products</a></li>
+                    <li><a href="/search"> Search Produce</a></li>
+                    <li><a href="/contact"> Contact Us</a></li>
+                    <li><a href="/about"> About Us</a></li>
+                </ul>
+            </div>
+            </nav>
+            <div class="create-blog content">
+                <form action="/all-produce" method="POST">
+                    <label for="type">Type</label>
+                    <input type="text" id="type" name="type" required><br>
+                    <label for="quantity">Quantity</label><br>
+                    <input type="text" id="quantity" name="quantity" required><br>
+                    <label for="description">Description:</label><br>
+                    <textarea id="description" name="description" required></textarea><br>
+                    <input type="submit" class="submit">
+         
+                 </form>
+             </div>
+         
+        
+
+    </body>
+</html>

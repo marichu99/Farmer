@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+
+
+    </head>
+    <body>
+      
+        
+            <nav>
+            <div class="site-title"><a href="/"><h1>Farmer Consumer Linkage System</h1></a>
+                <p>A repository for all farm Produce</p>
+                </div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/all-produce">Add Produce</a></li>
+                    <li><a href="/search"> Search Produce</a></li>
+                    <li><a href="/contact"> Contact Us</a></li>
+                    <li><a href="/about"> About Us</a></li>
+                </ul><br>
+                
+                <form action="/getProduce" method="POST">
+                <input type="text" placeholder="Search for produce" id="search" name="search"><br>
+                <input type="submit" value="search" class="button">
+                </form>
+                
+            </div>
+            </nav>
+            
+               
+                <div class="blogs-content">
+                   <p>Essential evidence has shown that farmers stand a higher chance to benefit due to the evolution of brokers in linking the farmers to the wider markets (GoK, 2010). A point in case comes when a Kenyan NGO called DrumNet attempted to link small-scale farmers to commercial banks, retail farm suppliers, transport services and exporters through the use of se lf-help groups at considerate pricing for the small scale farmers. 
+                    In Kenya, agriculture is the backbone of the economy. The agricultural sector accounts directly for 24% of the country’s GDP and another 27% indirectly as a result of business with the service, manufacturing and distribution sectors (FMK, 2021). Agriculture is responsible for 65% of Kenya’s export revenue, and in rural areas it provides employment for more than 80% of the population. With this being said, the agricultural sector is dwindling due to poor agricultural practices and methods, this associates an urgent need to revamp the country’s agricultural scene so that we may secure the country’s economy and the country’s future at large.
+                    The agricultural sector will become a key player in multi-lateral and bilateral trade negotiations with the objectives of expanding and diversifying agricultural markets especially to the COMESA and other export markets (GoK, 2010). There is necessity for better comprehension on how farmers have been able to effectively navigate the available markets, what drawbacks to they undergo from time to time, what opportunities are available to them and how the gap between the farmers and the buyers of the produce can be bridged.
+                    A research conducted by Davis Nguthi, an alumni of the university of Nairobi founded that small scale tropic fruit farmers lose out on international markets. This was due to lack of economies of scale, difficulty in complying with market access requirement, poor linkages to market and inadequate market information and dissemination. One of the strategies the government has taken up to mitigate the ongoing stalemate in the agricultural sector is to improve market access for smallholders trough better supply chain management (GoK 2007), this has also been emphasized in the Agricultural Sector Development Strategy 2010-2020 (GoK, 2010). The government has also vowed to help farmers access markets through developing infrastructure, setting up facilities ensuring quality standards are met on the farmer’s produce.
+                    Mkulima Young is a web based application that aids farmers to effectively link them with their desired buyers. A young entrepreneur called Joseph came up with an online market place for farmers that facilitated easy sale of their produce through easy cooperation with the sellers/ farmers remotely. The system gets the buyers search requests through a form on the home page that allows a user to type in a description of the product they want, then the preferred search results are displayed to the buyer promptly, containing pictorial descriptions of the intended search. The web-app also has a functionality that enables farmers to post both wordy and pictorial descriptions of the farm produce that they want to liquidate, their desired pricing of the farm quality and the quantity of the farm produce. The system also has blog posts from various farmers who talk about their experience in farming, and what lessons they have learnt throughout their journey in their farming venture among other things. In addition to that, the Mkulima Young system also has additional functionality of requesting transport services for the farm produce by the farmer.
+                    Farmers Market Kenya is an online marketplace that enables buyers and sellers of farm produce to meet and trade in the produce. The system is accessible through the internet and enables farmers to sell produce from the convenience of their homesteads. The system encompasses a variety of functionality one of them being able to enable farmers post a pictorial description of the farm produce they intend to liquidate and also a wordy description on the same farm produce they would like to sell. The system has an option of conveniencing  the buyers by allowing them to search for produce that has been uploaded to the system by farmers. This is done by using specific parameters such as the category of their desired farm produce, the intended location of the search produce, the quantity of the produce and the price range of the produce.
+                    The processes however having good intentions, it did not address the needs of farmers who grow crops for subsistence purposes, crops that would feed the local community and drive the agricultural sector higher. Local farmers are still experiencing the stiff and harsh conditions of the dwindling agricultural economy and the oppressive black market pricing by the food cartels. This thus brings a necessity in a system that will to be able to effectively link the producer of farm goods to the desired consumer of goods hereby ensuring proper profit margins for local farmers and eradicating the food cartels that are leeching the agricultural sector and the economy at large.
+                    The system will enable that to happen using an interface that will display the goods available, the consumer and producer will source the goods available through a database that contains user information. The user information ensures non-repudiation levels thus ensuring consumer and producer identity.
+                    </p>
+                   
+               </div>
+            
+            
+            
+        
+        
+        <script>
+            // select the delete button and attach it to a variable
+            const trash=document.querySelector('.button2');
+            // add event listener
+            trash.addEventListener('click', (e)=>{
+                // get to the endpoint id
+                const endpoint ='http://localhost:3000/getProduce/'+trash.dataset.emp;
+                console.log(endpoint);
+                // fetch request
+                const deleteMethod={
+                    method: 'DELETE',
+                   
+                };
+                fetch(endpoint,deleteMethod)
+                .then((response) => response.json())
+                .then((data)=> window.location.href=data.redirect)
+                .catch((err)=> console.log(err));
+            });
+            var type =document.querySelector('.type').textContent;
+            var quantity =document.querySelector('.quantity').textContent;
+            var description =document.querySelector('.description').textContent;
+             
+
+        </script>
+        
+    </body>
+</html>

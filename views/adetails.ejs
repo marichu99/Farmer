@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+
+
+    </head>
+    <body>
+      
+        
+            <nav>
+            <div class="site-title"><a href="/"><h1>Farmer Consumer Linkage System</h1></a>
+                <p>A repository for all farm Produce</p>
+                </div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/all-produce">Add Produce</a></li>
+                    <li><a href="/search"> Search Produce</a></li>
+                    <li><a href="/contact"> Contact Us</a></li>
+                    <li><a href="/about"> About Us</a></li>
+                </ul><br>
+                
+                <form action="/getProduce" method="POST">
+                <input type="text" placeholder="Search for produce" id="search" name="search"><br>
+                <input type="submit" value="search" class="button">
+                </form>
+                
+            </div>
+            </nav>
+            
+               
+                <div class="blogs-content">
+                    
+                   
+                     <% if (Data.length>0){ %>
+                        <% Data.forEach(blog=>{ %>
+                         <form action="/bought/<%- blog._id %>" method="POST">   
+                          <a href="/getProduce/<%- blog._id %>" class="single" >
+                          <h2 class="type" name="type"><%= blog.type %></h2>
+                          <p class="quantity" name="type"><%= blog.quantity %></p>
+                          <p class="description" name="type"><%= blog.description%></p>                          
+                        </a>
+                        <input type="submit" value="Delete" class="button2" data-emp="<%=blog._id%>">                       
+                        </form><br>
+                                                  
+                       
+                        <% }) %>
+                     <% } %>
+                </div>
+                
+            
+            
+            
+        
+        
+        <script>
+            // select the delete button and attach it to a variable
+            const trash=document.querySelector('.button2');
+            // add event listener
+            trash.addEventListener('click', (e)=>{
+                // get to the endpoint id
+                const endpoint ='http://localhost:3000/getProduce/'+trash.dataset.emp;
+                console.log(endpoint);
+                // fetch request
+                const deleteMethod={
+                    method: 'DELETE',
+                   
+                };
+                fetch(endpoint,deleteMethod)
+                .then((response) => response.json())
+                .then((data)=> window.location.href=data.redirect)
+                .catch((err)=> console.log(err));
+            });
+            var type =document.querySelector('.type').textContent;
+            var quantity =document.querySelector('.quantity').textContent;
+            var description =document.querySelector('.description').textContent;
+             
+
+        </script>
+        
+    </body>
+</html>
